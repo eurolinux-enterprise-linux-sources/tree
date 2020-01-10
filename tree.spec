@@ -1,7 +1,7 @@
 Summary: File system tree viewer
 Name: tree
 Version: 1.5.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: Applications/File
 License: GPLv2+
 Url: http://mama.indstate.edu/users/ice/tree/
@@ -10,6 +10,7 @@ Patch1: tree-1.2-carrot.patch
 Patch2: tree-1.2-no-strip.patch
 Patch3: tree-preserve-timestamps.patch
 Patch4: tree-no-color-by-default.patch
+Patch5: tree-fixbufsiz.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
@@ -30,6 +31,9 @@ utility.
 
 # Disable color output by default.
 %patch4 -p1 -b .no-color-by-default
+
+# Handle large UID/GID values (bug #1110559).
+%patch5 -p1 -b .fixbufsiz
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS" "CPPFLAGS=$(getconf LFS_CFLAGS)" %{?_smp_mflags}
@@ -54,6 +58,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README LICENSE
 
 %changelog
+* Thu Nov 27 2014 Tim Waugh <twaugh@redhat.com> - 1.5.3-3
+- Handle large UID/GID values (bug #1110559).
+
 * Wed Mar  3 2010 Tim Waugh <twaugh@redhat.com> 1.5.3-2
 - Added comments to all patches.
 
