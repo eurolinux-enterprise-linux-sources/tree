@@ -1,7 +1,7 @@
 Summary: File system tree viewer
 Name: tree
 Version: 1.6.0
-Release: 10%{?dist}
+Release: 8%{?dist}
 Group: Applications/File
 License: GPLv2+
 Url: http://mama.indstate.edu/users/ice/tree/
@@ -58,12 +58,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc README LICENSE
 
 %changelog
-* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.6.0-10
-- Mass rebuild 2014-01-24
-
-* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.6.0-9
-- Mass rebuild 2013-12-27
-
 * Thu Jul  4 2013 Tim Waugh <twaugh@redhat.com> - 1.6.0-8
 - Handle large UID/GID values (bug #980945).
 
